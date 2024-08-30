@@ -19,3 +19,7 @@ steps:
     jmeter -n -t "$(Pipeline.Workspace)/s/_jprajwalk_JmeterSamplePOC/AzurePipeline.jmx" -l "$(Pipeline.Workspace)/s/results.jtl"
   displayName: 'Run JMeter Test'
   workingDirectory: '$(Pipeline.Workspace)/s'
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/TEST-*.xml'
