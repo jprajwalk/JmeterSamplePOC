@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="AzurePipeline">
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+    </TestPlan>
+    <hashTree>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+        <collectionProp name="HeaderManager.headers">
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Authorization</stringProp>
+            <stringProp name="Header.value">SharedAccessSignature sr=rmg-we-bigpapi-ppd-psb-01.servicebus.windows.net&amp;sig=kU0Kv0Gr18CoPf8PTD1srGwpYhDl0js474UP8cxrqZQ%3d&amp;se=1998327830&amp;skn=RootManageSharedAccessKey</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Content-Length</stringProp>
+            <stringProp name="Header.value">1253</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Host</stringProp>
+            <stringProp name="Header.value">rmg-we-bigpapi-ppd-psb-01.servicebus.windows.net </stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Connection</stringProp>
+            <stringProp name="Header.value"> Keep-Alive</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Accept-Encoding</stringProp>
+            <stringProp name="Header.value">gzip,deflate </stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">User-Agent</stringProp>
+            <stringProp name="Header.value">Apache-HttpClient/4.5.5</stringProp>
+          </elementProp>
+        </collectionProp>
+      </HeaderManager>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="ActiveAnts - Push API Customers">
+        <intProp name="ThreadGroup.num_threads">100</intProp>
+        <stringProp name="ThreadGroup.duration">${time}</stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="ActiveAnts">
+          <stringProp name="HTTPSampler.domain">rmg-we-bigpapi-ppd-psb-01.servicebus.windows.net</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">rmg-we-bigpapi-ppd-psb-activeants-topic-01/messages</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;registration&quot;:[{&quot;clientID&quot;:&quot;a3c49b70-f38b-453f-bc03-fb0c0285a1f9&quot;,&quot;clientName&quot;:&quot;ActiveAnts&quot;,&quot;endPointURL&quot;:&quot;https://oec-logistics-sandbox.byteintlapi.com/logistics/rm/callbackTrack&quot;,&quot;subscription&quot;:[{&quot;clientRefId&quot;:&quot;a3c49b70-f38b-453f-bc03-fb0c0285a1f9&quot;,&quot;subscriptionID&quot;:&quot;2ba022e5-84e4-47c0-a002-1dc9aebbdc0c&quot;,&quot;subscriptionType&quot;:&quot;AccountId&quot;,&quot;subscriptionValue&quot;:&quot;0645275000&quot;}]}],&quot;mailPiece&quot;:{&quot;mailPieceId&quot;:&quot;280645275000A6F6CBF63&quot;,&quot;carrierShortName&quot;:&quot;RM&quot;,&quot;summary&quot;:{&quot;uniqueItemId&quot;:&quot;280645275000A6F6CBF63&quot;,&quot;productId&quot;:&quot;ITL&quot;,&quot;productName&quot;:&quot;Royal Mail Tracked 48&quot;,&quot;productDescription&quot;:&quot;Default&quot;,&quot;productCategory&quot;:&quot;INTERNATIONAL&quot;,&quot;destinationCountryCode&quot;:&quot;GB&quot;,&quot;destinationCountryName&quot;:&quot;United Kingdom&quot;,&quot;originCountryCode&quot;:&quot;GB&quot;,&quot;originCountryName&quot;:&quot;United Kingdom&quot;,&quot;lastEventCode&quot;:&quot;EVDAC&quot;,&quot;lastEventName&quot;:&quot;Item Received&quot;,&quot;lastEventDateTime&quot;:&quot;2024-02-05T15:05:41Z&quot;,&quot;lastEventLocationName&quot;:&quot;Nottingham MC&quot;,&quot;statusDescription&quot;:&quot;We&apos;ve got it&quot;,&quot;statusCategory&quot;:&quot;We&apos;ve got it&quot;,&quot;statusHelpText&quot;:&quot;If a delivery timeframe is offered, please be aware this is our aim and not a guarantee, and it can&apos;t be changed.&quot;,&quot;linkedIdentifierLabel&quot;:&quot;13&quot;,&quot;internationalPostalProvider&quot;:{}},&quot;details&quot;:{&quot;accountIdentifier&quot;:&quot;0645275000&quot;,&quot;accountName&quot;:&quot;TIK TOK INFORMATION TECHNOLOGIES UK&quot;,&quot;format&quot;:&quot;9&quot;,&quot;mailClassCode&quot;:&quot;G&quot;},&quot;signature&quot;:{&quot;signatureDateTime&quot;:&quot;2024-02-05T15:05:41Z&quot;},&quot;preadvice&quot;:{&quot;item&quot;:{&quot;serviceEnhancements&quot;:{}}},&quot;eventDetail&quot;:{&quot;eventCode&quot;:&quot;EVDAC&quot;,&quot;eventName&quot;:&quot;Item Received&quot;,&quot;eventDateTime&quot;:&quot;2024-02-05T15:05:41Z&quot;,&quot;locationName&quot;:&quot;NottinghamMC&quot;,&quot;estimatedDelivery&quot;:{},&quot;location&quot;:{&quot;position&quot;:{}},&quot;charges&quot;:{}},&quot;deliveryAddress&quot;:{&quot;postCode&quot;:&quot;OL120PR&quot;,&quot;country&quot;:&quot;GB&quot;},&quot;greenCredentials&quot;:{&quot;summary&quot;:{&quot;dataAccuracy&quot;:&quot;Calculating&quot;}},&quot;other&quot;:{&quot;channelID&quot;:&quot;28&quot;,&quot;locationId&quot;:&quot;6474&quot;,&quot;mailpieceReceivedDate&quot;:&quot;2024-02-05T15:06:20Z&quot;,&quot;trackingProductGroup&quot;:&quot;TR&quot;,&quot;obdID&quot;:&quot;002641&quot;}}}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ConstantThroughputTimer guiclass="TestBeanGUI" testclass="ConstantThroughputTimer" testname="Constant Throughput Timer" enabled="true">
+            <intProp name="calcMode">2</intProp>
+            <stringProp name="throughput">${ctt}</stringProp>
+          </ConstantThroughputTimer>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener">
+        <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="testName" elementType="Argument">
+              <stringProp name="Argument.name">testName</stringProp>
+              <stringProp name="Argument.value">jmeter</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="connectionString" elementType="Argument">
+              <stringProp name="Argument.name">connectionString</stringProp>
+              <stringProp name="Argument.value">InstrumentationKey=93c1f905-ffef-460d-9d64-4dab1d780eb6;IngestionEndpoint=https://westeurope-4.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/;ApplicationId=b0e042ec-84f6-443c-8e6b-27ca25aa3285</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="liveMetrics" elementType="Argument">
+              <stringProp name="Argument.name">liveMetrics</stringProp>
+              <stringProp name="Argument.value">true</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="samplersList" elementType="Argument">
+              <stringProp name="Argument.name">samplersList</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="useRegexForSamplerList" elementType="Argument">
+              <stringProp name="Argument.name">useRegexForSamplerList</stringProp>
+              <stringProp name="Argument.value">false</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="logResponseData" elementType="Argument">
+              <stringProp name="Argument.name">logResponseData</stringProp>
+              <stringProp name="Argument.value">OnFailure</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="logSampleData" elementType="Argument">
+              <stringProp name="Argument.name">logSampleData</stringProp>
+              <stringProp name="Argument.value">OnFailure</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </elementProp>
+        <stringProp name="classname">io.github.adrianmo.jmeter.backendlistener.azure.AzureBackendClient</stringProp>
+      </BackendListener>
+      <hashTree/>
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+        <stringProp name="TestPlan.comments">C:\Users\pkumarj\OneDrive - Capgemini\Desktop\Data\RMG\INTERFACE\APIC\PVT\JmeterGUI\Results\PushAPI\VintedDLQ.csv</stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
