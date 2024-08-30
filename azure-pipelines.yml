@@ -1,11 +1,3 @@
-# Starter pipeline
-- task: JMeterInstaller@0
-  inputs:
-    jmeterVersion: '5.6.3'
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
@@ -23,3 +15,4 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'jmeter -n -t "$(Pipeline.Workspace)\_jprajwalk_JmeterSamplePOC\AzurePipeline.jmx" -l "$(Pipeline.Workspace)\results.jtl"'
+    workingDirectory: '$(Pipeline.Workspace)\_jprajwalk_JmeterSamplePOC\AzurePipeline.jmx'
