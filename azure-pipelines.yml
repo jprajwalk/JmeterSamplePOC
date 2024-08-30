@@ -8,7 +8,14 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- task: CmdLine@2
-  inputs:
-    script: 'jmeter -n -t "$(Pipeline.Workspace)\_jprajwalk_JmeterSamplePOC\AzurePipeline.jmx" -l "$(Pipeline.Workspace)\results.jtl"'
-    workingDirectory: '$(Pipeline.Workspace)/s'
+# Install JMeter
+- script: |
+    sudo apt-get update
+    sudo apt-get install -y jmeter
+  displayName: 'Install JMeter'
+
+# Run JMeter command
+- script: |
+    jmeter -n -t "$(Pipeline.Workspace)/s/_jprajwalk_JmeterSamplePOC/AzurePipeline.jmx" -l "$(Pipeline.Workspace)/s/results.jtl"
+  displayName: 'Run JMeter Test'
+  workingDirectory: '$(Pipeline.Workspace)/s'
