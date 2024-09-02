@@ -16,9 +16,12 @@ steps:
 
 # Run JMeter command
 - script: |
+    echo "JMeter Test File: $(Pipeline.Workspace)/s/_jprajwalk_JmeterSamplePOC/AzurePipeline.jmx"
+    echo "Results File: $(Pipeline.Workspace)/s/results.jtl"
     jmeter -n -t "$(Pipeline.Workspace)/s/_jprajwalk_JmeterSamplePOC/AzurePipeline.jmx" -l "$(Pipeline.Workspace)/s/results.jtl"
   displayName: 'Run JMeter Test'
-  workingDirectory: '$(Pipeline.Workspace)/s'
+  workingDirectory: '$(Pipeline.Workspace)'
+
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
