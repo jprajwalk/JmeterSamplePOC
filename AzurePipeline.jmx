@@ -11,7 +11,7 @@
         <collectionProp name="HeaderManager.headers">
           <elementProp name="" elementType="Header">
             <stringProp name="Header.name">Authorization</stringProp>
-            <stringProp name="Header.value">SharedAccessSignature sr=rmg-we-bigpapi-ppd-psb-01.servicebus.windows.net&amp;sig=kU0Kv0Gr18CoPf8PTD1srGwpYhDl0js474UP8cxrqZQ%3d&amp;se=1998327830&amp;skn=RootManageSharedAccessKey</stringProp>
+            <stringProp name="Header.value">SharedU0Kv0js474UPd&amp;se=1998327830&amp;skn=RootManageSharedAccessKey</stringProp>
           </elementProp>
           <elementProp name="" elementType="Header">
             <stringProp name="Header.name">Content-Length</stringProp>
@@ -19,7 +19,7 @@
           </elementProp>
           <elementProp name="" elementType="Header">
             <stringProp name="Header.name">Host</stringProp>
-            <stringProp name="Header.value">rmg-we-bigpapi-ppd-psb-01.servicebus.windows.net </stringProp>
+            <stringProp name="Header.value">rmdows.net </stringProp>
           </elementProp>
           <elementProp name="" elementType="Header">
             <stringProp name="Header.name">Connection</stringProp>
@@ -83,7 +83,7 @@
             </elementProp>
             <elementProp name="connectionString" elementType="Argument">
               <stringProp name="Argument.name">connectionString</stringProp>
-              <stringProp name="Argument.value">InstrumentationKey=93c1f905-ffef-460d-9d64-4dab1d780eb6;IngestionEndpoint=https://westeurope-4.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/;ApplicationId=b0e042ec-84f6-443c-8e6b-27ca25aa3285</stringProp>
+              <stringProp name="Argument.value">InstrumentationKey=93c1f90s://westeurope.livediagnostics.monitor.azure.com/;ApplicationId=b0e042ec-84f6-443c-8e6b-27ca25aa3285</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="liveMetrics" elementType="Argument">
